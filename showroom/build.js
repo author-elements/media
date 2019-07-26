@@ -87,7 +87,7 @@ class Builder extends ProductionLine {
 
   make (devMode = false) {
     this.clean()
-    // this.copyAssets(true)
+    this.copyAssets(true)
     this.addTask('Copy Libraries', next => this.copyLibs(next))
     this.addTask('Copy Component', next => this.copyComponent(next))
     this.addTask('Copy Custom Elements', next => this.copyCustomElements(next))
@@ -121,6 +121,8 @@ const builder = new Builder({
     }
   }
 })
+
+builder.ASSETS = ['/assets']
 
 builder.paths = {
   apps: path.join(builder.SOURCE, '/apps'),
