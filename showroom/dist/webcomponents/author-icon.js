@@ -1,6 +1,6 @@
 // Copyright (c) 2019 Author.io. MIT licensed.
 // @author.io/element-icon v1.0.0 available at github.com/author-elements/icon
-// Last Build: 7/25/2019, 9:51:27 PM
+// Last Build: 8/7/2019, 3:42:35 PM
 var AuthorIconElement = (function () {
   'use strict';
 
@@ -32,12 +32,16 @@ var AuthorIconElement = (function () {
       });
 
       this.UTIL.registerListener(this.xhr, 'load', evt => {
+        console.log(evt);
         this.PRIVATE.inject(this.xhr.responseText);
-        this.setAttribute('resolved', '');
       });
 
       this.UTIL.registerListeners(this, {
         connected: () => {
+          if (this.children.length > 0) {
+            return
+          }
+
           if (!this.src) {
             return this.PRIVATE.inject(`<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <title>Placeholder Icon</title>
