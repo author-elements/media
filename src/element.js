@@ -11,20 +11,9 @@ class AuthorIconElement extends AuthorBaseElement(HTMLElement) {
     })
 
     this.UTIL.definePrivateMethods({
-      inject: code => this.insertAdjacentHTML('beforeend', code)
-    })
+      inject: code => this.insertAdjacentHTML('beforeend', code),
 
-    this.UTIL.registerListener(this.xhr, 'load', evt => {
-      console.log(evt)
-      this.PRIVATE.inject(this.xhr.responseText)
-    })
-
-    this.UTIL.registerListeners(this, {
-      connected: () => {
-        if (this.children.length > 0) {
-          return
-        }
-
+      render: () => {
         if (!this.src) {
           return this.PRIVATE.inject(`<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <title>Placeholder Icon</title>
@@ -45,6 +34,36 @@ class AuthorIconElement extends AuthorBaseElement(HTMLElement) {
 
         this.xhr.open('GET', this.src)
         this.xhr.send()
+      }
+    })
+
+    this.UTIL.registerListener(this.xhr, 'load', evt => {
+      let { responseText, status, statusText } = this.xhr
+
+      switch (status) {
+        case 200: return this.PRIVATE.inject(responseText)
+      }
+    })
+
+    this.UTIL.registerListeners(this, {
+      'attribute.change': evt => {
+        let { attribute, oldValue, newValue } = evt.detail
+
+        if (newValue === oldValue) {
+          return
+        }
+
+        switch (attribute) {
+          case 'src': return this.PRIVATE.render()
+        }
+      },
+
+      connected: () => {
+        if (this.children.length > 0) {
+          return
+        }
+
+        this.PRIVATE.render()
       }
     })
   }
