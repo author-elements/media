@@ -1,6 +1,6 @@
 {
   "name": "@author.io/element-icon",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "author-icon custom element (web component).",
   "main": "dist/author-icon.min.js",
   "scripts": {
