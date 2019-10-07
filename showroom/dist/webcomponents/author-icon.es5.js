@@ -1,6 +1,6 @@
 // Copyright (c) 2019 Author.io. MIT licensed.
-// @author.io/element-icon v1.0.1 available at github.com/author-elements/icon
-// Last Build: 8/7/2019, 3:51:45 PM
+// @author.io/element-icon v1.0.3 available at github.com/author-elements/icon
+// Last Build: 10/6/2019, 11:09:40 PM
 var AuthorIconElement = (function () {
   'use strict';
 
@@ -103,7 +103,7 @@ var AuthorIconElement = (function () {
 
       _classCallCheck(this, AuthorIconElement);
 
-      _this = _possibleConstructorReturn(this, _getPrototypeOf(AuthorIconElement).call(this, "<template><style>@charset \"UTF-8\"; :host *,:host :after,:host :before{box-sizing:border-box}author-icon *,author-icon :after,author-icon :before{box-sizing:border-box}</style><slot></slot></template>"));
+      _this = _possibleConstructorReturn(this, _getPrototypeOf(AuthorIconElement).call(this, "<template><style>@charset \"UTF-8\"; :host{display:inline-flex}:host *,:host :after,:host :before{box-sizing:border-box}author-icon{display:inline-flex}author-icon *,author-icon :after,author-icon :before{box-sizing:border-box}</style><slot></slot></template>"));
       _this.xhr = new XMLHttpRequest();
 
       _this.UTIL.defineAttributes({
@@ -114,11 +114,11 @@ var AuthorIconElement = (function () {
 
       _this.UTIL.definePrivateMethods({
         inject: function inject(code) {
-          return _this.insertAdjacentHTML('beforeend', code);
+          return _this.innerHTML = code;
         },
         render: function render() {
           if (!_this.src) {
-            return _this.PRIVATE.inject("<svg width=\"24px\" height=\"24px\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n            <title>Placeholder Icon</title>\n            <desc>Copyright Author.io</desc>\n            <g>\n              <mask id=\"mask-2\" fill=\"white\">\n                <path d=\"M0,0 L4.8,0 L4.8,24 L0,24 L0,0 Z M7.68,0 L10.56,0 L10.56,24 L7.68,24 L7.68,0 Z M13.44,0 L16.32,0 L16.32,24 L13.44,24 L13.44,0 Z M19.2,0 L24,0 L24,24 L19.2,24 L19.2,0 Z\"></path>\n              </mask>\n              <g mask=\"url(#mask-2)\">\n                <mask id=\"mask-4\" fill=\"white\">\n                  <path d=\"M0,0 L24,0 L24,4.8 L0,4.8 L0,0 Z M0,19.2 L24,19.2 L24,24 L0,24 L0,19.2 Z M0,13.44 L24,13.44 L24,16.32 L0,16.32 L0,13.44 Z M0,7.68 L24,7.68 L24,10.56 L0,10.56 L0,7.68 Z\"></path>\n                </mask>\n                <path d=\"M3.84,0 L20.16,0 C22.2807734,-3.89579761e-16 24,1.71922656 24,3.84 L24,20.16 C24,22.2807734 22.2807734,24 20.16,24 L3.84,24 C1.71922656,24 2.5971984e-16,22.2807734 0,20.16 L0,3.84 C-2.5971984e-16,1.71922656 1.71922656,3.89579761e-16 3.84,0 Z M3.84,1.92 C2.77961328,1.92 1.92,2.77961328 1.92,3.84 L1.92,20.16 C1.92,21.2203867 2.77961328,22.08 3.84,22.08 L20.16,22.08 C21.2203867,22.08 22.08,21.2203867 22.08,20.16 L22.08,3.84 C22.08,2.77961328 21.2203867,1.92 20.16,1.92 L3.84,1.92 Z\" fill=\"#545454\" mask=\"url(#mask-4)\"></path>\n              </g>\n            </g>\n          </svg>");
+            return _this.PRIVATE.inject("<svg width=\"24px\" height=\"24px\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n            <title>Placeholder Icon</title>\n            <desc>Copyright ".concat(new Date().getFullYear(), " Author.io</desc>\n            <g>\n              <mask id=\"mask-2\" fill=\"white\">\n                <path d=\"M0,0 L4.8,0 L4.8,24 L0,24 L0,0 Z M7.68,0 L10.56,0 L10.56,24 L7.68,24 L7.68,0 Z M13.44,0 L16.32,0 L16.32,24 L13.44,24 L13.44,0 Z M19.2,0 L24,0 L24,24 L19.2,24 L19.2,0 Z\"></path>\n              </mask>\n              <g mask=\"url(#mask-2)\">\n                <mask id=\"mask-4\" fill=\"white\">\n                  <path d=\"M0,0 L24,0 L24,4.8 L0,4.8 L0,0 Z M0,19.2 L24,19.2 L24,24 L0,24 L0,19.2 Z M0,13.44 L24,13.44 L24,16.32 L0,16.32 L0,13.44 Z M0,7.68 L24,7.68 L24,10.56 L0,10.56 L0,7.68 Z\"></path>\n                </mask>\n                <path d=\"M3.84,0 L20.16,0 C22.2807734,-3.89579761e-16 24,1.71922656 24,3.84 L24,20.16 C24,22.2807734 22.2807734,24 20.16,24 L3.84,24 C1.71922656,24 2.5971984e-16,22.2807734 0,20.16 L0,3.84 C-2.5971984e-16,1.71922656 1.71922656,3.89579761e-16 3.84,0 Z M3.84,1.92 C2.77961328,1.92 1.92,2.77961328 1.92,3.84 L1.92,20.16 C1.92,21.2203867 2.77961328,22.08 3.84,22.08 L20.16,22.08 C21.2203867,22.08 22.08,21.2203867 22.08,20.16 L22.08,3.84 C22.08,2.77961328 21.2203867,1.92 20.16,1.92 L3.84,1.92 Z\" fill=\"#545454\" mask=\"url(#mask-4)\"></path>\n              </g>\n            </g>\n          </svg>"));
           }
 
           _this.xhr.open('GET', _this.src);
