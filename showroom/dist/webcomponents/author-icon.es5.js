@@ -1,6 +1,6 @@
 // Copyright (c) 2019 Author.io. MIT licensed.
 // @author.io/element-icon v1.0.4 available at github.com/author-elements/icon
-// Last Build: 10/25/2019, 2:47:48 AM
+// Last Build: 10/25/2019, 2:55:29 AM
 var AuthorIconElement = (function () {
   'use strict';
 
@@ -140,12 +140,28 @@ var AuthorIconElement = (function () {
       _classCallCheck(this, AuthorIconElement);
 
       _this = _possibleConstructorReturn(this, _getPrototypeOf(AuthorIconElement).call(this, "<template><style>@charset \"UTF-8\"; :host{display:inline-flex}:host *,:host :after,:host :before{box-sizing:border-box}author-icon{display:inline-flex}author-icon *,author-icon :after,author-icon :before{box-sizing:border-box}</style><slot></slot></template>"));
-      _this.xhr = new XMLHttpRequest();
-      _this.cache = caches.open('author-icons');
 
       _this.UTIL.defineAttributes({
         src: {
           default: null
+        }
+      });
+
+      _this.UTIL.defineProperties({
+        xhr: {
+          private: true,
+          readonly: true,
+          default: new XMLHttpRequest()
+        },
+        cache: {
+          private: true,
+          readonly: true,
+          default: window.caches.open('author-icons')
+        },
+        placeholder: {
+          private: true,
+          readonly: true,
+          default: "<svg width=\"24px\" height=\"24px\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n          <title>Placeholder Icon</title>\n          <desc>Copyright ".concat(new Date().getFullYear(), " Author.io</desc>\n          <g>\n            <mask id=\"mask-2\" fill=\"white\">\n              <path d=\"M0,0 L4.8,0 L4.8,24 L0,24 L0,0 Z M7.68,0 L10.56,0 L10.56,24 L7.68,24 L7.68,0 Z M13.44,0 L16.32,0 L16.32,24 L13.44,24 L13.44,0 Z M19.2,0 L24,0 L24,24 L19.2,24 L19.2,0 Z\"></path>\n            </mask>\n            <g mask=\"url(#mask-2)\">\n              <mask id=\"mask-4\" fill=\"white\">\n                <path d=\"M0,0 L24,0 L24,4.8 L0,4.8 L0,0 Z M0,19.2 L24,19.2 L24,24 L0,24 L0,19.2 Z M0,13.44 L24,13.44 L24,16.32 L0,16.32 L0,13.44 Z M0,7.68 L24,7.68 L24,10.56 L0,10.56 L0,7.68 Z\"></path>\n              </mask>\n              <path d=\"M3.84,0 L20.16,0 C22.2807734,-3.89579761e-16 24,1.71922656 24,3.84 L24,20.16 C24,22.2807734 22.2807734,24 20.16,24 L3.84,24 C1.71922656,24 2.5971984e-16,22.2807734 0,20.16 L0,3.84 C-2.5971984e-16,1.71922656 1.71922656,3.89579761e-16 3.84,0 Z M3.84,1.92 C2.77961328,1.92 1.92,2.77961328 1.92,3.84 L1.92,20.16 C1.92,21.2203867 2.77961328,22.08 3.84,22.08 L20.16,22.08 C21.2203867,22.08 22.08,21.2203867 22.08,20.16 L22.08,3.84 C22.08,2.77961328 21.2203867,1.92 20.16,1.92 L3.84,1.92 Z\" fill=\"#545454\" mask=\"url(#mask-4)\"></path>\n            </g>\n          </g>\n        </svg>")
         }
       });
 
@@ -167,11 +183,11 @@ var AuthorIconElement = (function () {
                       break;
                     }
 
-                    return _context.abrupt("return", _this.PRIVATE.inject("<svg width=\"24px\" height=\"24px\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n            <title>Placeholder Icon</title>\n            <desc>Copyright ".concat(new Date().getFullYear(), " Author.io</desc>\n            <g>\n              <mask id=\"mask-2\" fill=\"white\">\n                <path d=\"M0,0 L4.8,0 L4.8,24 L0,24 L0,0 Z M7.68,0 L10.56,0 L10.56,24 L7.68,24 L7.68,0 Z M13.44,0 L16.32,0 L16.32,24 L13.44,24 L13.44,0 Z M19.2,0 L24,0 L24,24 L19.2,24 L19.2,0 Z\"></path>\n              </mask>\n              <g mask=\"url(#mask-2)\">\n                <mask id=\"mask-4\" fill=\"white\">\n                  <path d=\"M0,0 L24,0 L24,4.8 L0,4.8 L0,0 Z M0,19.2 L24,19.2 L24,24 L0,24 L0,19.2 Z M0,13.44 L24,13.44 L24,16.32 L0,16.32 L0,13.44 Z M0,7.68 L24,7.68 L24,10.56 L0,10.56 L0,7.68 Z\"></path>\n                </mask>\n                <path d=\"M3.84,0 L20.16,0 C22.2807734,-3.89579761e-16 24,1.71922656 24,3.84 L24,20.16 C24,22.2807734 22.2807734,24 20.16,24 L3.84,24 C1.71922656,24 2.5971984e-16,22.2807734 0,20.16 L0,3.84 C-2.5971984e-16,1.71922656 1.71922656,3.89579761e-16 3.84,0 Z M3.84,1.92 C2.77961328,1.92 1.92,2.77961328 1.92,3.84 L1.92,20.16 C1.92,21.2203867 2.77961328,22.08 3.84,22.08 L20.16,22.08 C21.2203867,22.08 22.08,21.2203867 22.08,20.16 L22.08,3.84 C22.08,2.77961328 21.2203867,1.92 20.16,1.92 L3.84,1.92 Z\" fill=\"#545454\" mask=\"url(#mask-4)\"></path>\n              </g>\n            </g>\n          </svg>")));
+                    return _context.abrupt("return", _this.PRIVATE.inject(_this.PRIVATE.placeholder));
 
                   case 2:
                     _context.next = 4;
-                    return _this.cache;
+                    return _this.PRIVATE.cache;
 
                   case 4:
                     cache = _context.sent;
@@ -186,9 +202,9 @@ var AuthorIconElement = (function () {
                       break;
                     }
 
-                    _this.xhr.open('GET', _this.src);
+                    _this.PRIVATE.xhr.open('GET', _this.src);
 
-                    return _context.abrupt("return", _this.xhr.send());
+                    return _context.abrupt("return", _this.PRIVATE.xhr.send());
 
                   case 11:
                     reader = cachedRequest.body.getReader();
@@ -213,30 +229,30 @@ var AuthorIconElement = (function () {
         }()
       });
 
-      _this.UTIL.registerListener(_this.xhr, 'load',
+      _this.UTIL.registerListener(_this.PRIVATE.xhr, 'load',
       /*#__PURE__*/
       function () {
         var _ref2 = _asyncToGenerator(
         /*#__PURE__*/
         regeneratorRuntime.mark(function _callee3(evt) {
-          var _this$xhr, responseText, status, statusText, cache;
+          var _this$PRIVATE$xhr, responseText, status, statusText, cache;
 
           return regeneratorRuntime.wrap(function _callee3$(_context3) {
             while (1) {
               switch (_context3.prev = _context3.next) {
                 case 0:
-                  _this$xhr = _this.xhr, responseText = _this$xhr.responseText, status = _this$xhr.status, statusText = _this$xhr.statusText;
+                  _this$PRIVATE$xhr = _this.PRIVATE.xhr, responseText = _this$PRIVATE$xhr.responseText, status = _this$PRIVATE$xhr.status, statusText = _this$PRIVATE$xhr.statusText;
 
                   if (!(status !== 200)) {
                     _context3.next = 3;
                     break;
                   }
 
-                  return _context3.abrupt("return");
+                  return _context3.abrupt("return", _this.PRIVATE.inject(_this.PRIVATE.placeholder));
 
                 case 3:
                   _context3.next = 5;
-                  return _this.cache;
+                  return _this.PRIVATE.cache;
 
                 case 5:
                   cache = _context3.sent;
