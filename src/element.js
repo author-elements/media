@@ -3,6 +3,7 @@ class AuthorIconElement extends AuthorBaseElement(HTMLElement) {
     super(`{{TEMPLATE-STRING}}`)
 
     this.xhr = new XMLHttpRequest()
+    this.cache = caches.open('author-icons')
 
     this.UTIL.defineAttributes({
       src: {
@@ -13,7 +14,7 @@ class AuthorIconElement extends AuthorBaseElement(HTMLElement) {
     this.UTIL.definePrivateMethods({
       inject: code => this.innerHTML = code,
 
-      render: () => {
+      render: async () => {
         if (!this.src) {
           return this.PRIVATE.inject(`<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <title>Placeholder Icon</title>
@@ -32,17 +33,37 @@ class AuthorIconElement extends AuthorBaseElement(HTMLElement) {
           </svg>`)
         }
 
-        this.xhr.open('GET', this.src)
-        this.xhr.send()
+        let cache = await this.cache
+        let cachedRequest = await cache.match(this.src)
+
+        if (!cachedRequest) {
+          this.xhr.open('GET', this.src)
+          return this.xhr.send()
+        }
+
+        let reader = cachedRequest.body.getReader()
+        reader.read().then(({ value }) => this.PRIVATE.inject(new TextDecoder('utf-8').decode(value)))
       }
     })
 
-    this.UTIL.registerListener(this.xhr, 'load', evt => {
+    this.UTIL.registerListener(this.xhr, 'load', async evt => {
       let { responseText, status, statusText } = this.xhr
 
-      switch (status) {
-        case 200: return this.PRIVATE.inject(responseText)
+      if (status !== 200) {
+        return
       }
+
+      let cache = await this.cache
+
+      cache.match(this.src).then(async matched => {
+        if (!matched) {
+          await cache.put(this.src, new Response(responseText, {
+            headers: { 'Content-Type': 'image/svg+xml' }
+          }))
+        }
+
+        this.PRIVATE.inject(responseText)
+      })
     })
 
     this.UTIL.registerListeners(this, {
@@ -56,14 +77,6 @@ class AuthorIconElement extends AuthorBaseElement(HTMLElement) {
         switch (attribute) {
           case 'src': return this.PRIVATE.render()
         }
-      },
-
-      connected: () => {
-        if (this.children.length > 0) {
-          return
-        }
-
-        this.PRIVATE.render()
       }
     })
   }

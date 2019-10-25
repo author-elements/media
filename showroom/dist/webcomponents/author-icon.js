@@ -1,6 +1,6 @@
 // Copyright (c) 2019 Author.io. MIT licensed.
-// @author.io/element-icon v1.0.3 available at github.com/author-elements/icon
-// Last Build: 10/6/2019, 11:09:40 PM
+// @author.io/element-icon v1.0.4 available at github.com/author-elements/icon
+// Last Build: 10/25/2019, 2:47:48 AM
 var AuthorIconElement = (function () {
   'use strict';
 
@@ -20,6 +20,7 @@ var AuthorIconElement = (function () {
       super(`<template><style>@charset "UTF-8"; :host{display:inline-flex}:host *,:host :after,:host :before{box-sizing:border-box}author-icon{display:inline-flex}author-icon *,author-icon :after,author-icon :before{box-sizing:border-box}</style><slot></slot></template>`);
 
       this.xhr = new XMLHttpRequest();
+      this.cache = caches.open('author-icons');
 
       this.UTIL.defineAttributes({
         src: {
@@ -30,7 +31,7 @@ var AuthorIconElement = (function () {
       this.UTIL.definePrivateMethods({
         inject: code => this.innerHTML = code,
 
-        render: () => {
+        render: async () => {
           if (!this.src) {
             return this.PRIVATE.inject(`<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <title>Placeholder Icon</title>
@@ -49,17 +50,37 @@ var AuthorIconElement = (function () {
           </svg>`)
           }
 
-          this.xhr.open('GET', this.src);
-          this.xhr.send();
+          let cache = await this.cache;
+          let cachedRequest = await cache.match(this.src);
+
+          if (!cachedRequest) {
+            this.xhr.open('GET', this.src);
+            return this.xhr.send()
+          }
+
+          let reader = cachedRequest.body.getReader();
+          reader.read().then(({ value }) => this.PRIVATE.inject(new TextDecoder('utf-8').decode(value)));
         }
       });
 
-      this.UTIL.registerListener(this.xhr, 'load', evt => {
+      this.UTIL.registerListener(this.xhr, 'load', async evt => {
         let { responseText, status, statusText } = this.xhr;
 
-        switch (status) {
-          case 200: return this.PRIVATE.inject(responseText)
+        if (status !== 200) {
+          return
         }
+
+        let cache = await this.cache;
+
+        cache.match(this.src).then(async matched => {
+          if (!matched) {
+            await cache.put(this.src, new Response(responseText, {
+              headers: { 'Content-Type': 'image/svg+xml' }
+            }));
+          }
+
+          this.PRIVATE.inject(responseText);
+        });
       });
 
       this.UTIL.registerListeners(this, {
@@ -73,14 +94,6 @@ var AuthorIconElement = (function () {
           switch (attribute) {
             case 'src': return this.PRIVATE.render()
           }
-        },
-
-        connected: () => {
-          if (this.children.length > 0) {
-            return
-          }
-
-          this.PRIVATE.render();
         }
       });
     }
