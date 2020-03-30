@@ -1,7 +1,7 @@
 {
-  "name": "author-icon-showroom",
+  "name": "author-media-showroom",
   "version": "1.0.0",
-  "description": "Demo for author-icon component",
+  "description": "Demo for author-media component",
   "main": "index.js",
   "scripts": {
     "build": "node build.js --prod",

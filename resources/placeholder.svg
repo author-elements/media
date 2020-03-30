@@ -1,0 +1,8 @@
+<svg width="300px" height="300px" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>placeholder</title>
+  <g id="placeholder" fill="#F2F2F2" stroke="#D0D0D0" stroke-width="3">
+    <rect id="rectangle" x="1.5" y="1.5" width="297" height="297"></rect>
+    <line x1="2" y1="2" x2="298" y2="298" id="line"></line>
+    <line x1="2" y1="2" x2="298" y2="298" id="line" transform="translate(150.000000, 150.000000) scale(-1, 1) translate(-150.000000, -150.000000) "></line>
+  </g>
+</svg>

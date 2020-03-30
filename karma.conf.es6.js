@@ -1,4 +1,4 @@
-const customize = require('@author.io/karma-customelements')('test/es6', './dist/author-icon.js', 'BrowserStack')
+const customize = require('@author.io/karma-customelements')('test/es6', './dist/author-media.js', 'BrowserStack')
 
 module.exports = config => {
   config.set(Object.assign(customize(config, true, false), {
