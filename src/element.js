@@ -1,4 +1,4 @@
-class AuthorIconElement extends AuthorBaseElement(HTMLElement) {
+class AuthorMediaElement extends AuthorBaseElement(HTMLElement) {
   constructor () {
     super(`{{TEMPLATE-STRING}}`)
 
@@ -18,25 +18,18 @@ class AuthorIconElement extends AuthorBaseElement(HTMLElement) {
       cache: {
         private: true,
         readonly: true,
-        default: window.caches.open('author-icons')
+        default: window.caches.open('author-media')
       },
 
       placeholder: {
         private: true,
         readonly: true,
-        default: `<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <title>Placeholder Icon</title>
-          <desc>Copyright ${new Date().getFullYear()} Author.io</desc>
-          <g>
-            <mask id="mask-2" fill="white">
-              <path d="M0,0 L4.8,0 L4.8,24 L0,24 L0,0 Z M7.68,0 L10.56,0 L10.56,24 L7.68,24 L7.68,0 Z M13.44,0 L16.32,0 L16.32,24 L13.44,24 L13.44,0 Z M19.2,0 L24,0 L24,24 L19.2,24 L19.2,0 Z"></path>
-            </mask>
-            <g mask="url(#mask-2)">
-              <mask id="mask-4" fill="white">
-                <path d="M0,0 L24,0 L24,4.8 L0,4.8 L0,0 Z M0,19.2 L24,19.2 L24,24 L0,24 L0,19.2 Z M0,13.44 L24,13.44 L24,16.32 L0,16.32 L0,13.44 Z M0,7.68 L24,7.68 L24,10.56 L0,10.56 L0,7.68 Z"></path>
-              </mask>
-              <path d="M3.84,0 L20.16,0 C22.2807734,-3.89579761e-16 24,1.71922656 24,3.84 L24,20.16 C24,22.2807734 22.2807734,24 20.16,24 L3.84,24 C1.71922656,24 2.5971984e-16,22.2807734 0,20.16 L0,3.84 C-2.5971984e-16,1.71922656 1.71922656,3.89579761e-16 3.84,0 Z M3.84,1.92 C2.77961328,1.92 1.92,2.77961328 1.92,3.84 L1.92,20.16 C1.92,21.2203867 2.77961328,22.08 3.84,22.08 L20.16,22.08 C21.2203867,22.08 22.08,21.2203867 22.08,20.16 L22.08,3.84 C22.08,2.77961328 21.2203867,1.92 20.16,1.92 L3.84,1.92 Z" fill="#545454" mask="url(#mask-4)"></path>
-            </g>
+        default: `<svg width="300px" height="300px" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <title>placeholder</title>
+          <g id="placeholder" fill="#F2F2F2" stroke="#D0D0D0" stroke-width="3">
+            <rect id="rectangle" x="1.5" y="1.5" width="297" height="297"></rect>
+            <line x1="2" y1="2" x2="298" y2="298" id="line"></line>
+            <line x1="2" y1="2" x2="298" y2="298" id="line" transform="translate(150.000000, 150.000000) scale(-1, 1) translate(-150.000000, -150.000000) "></line>
           </g>
         </svg>`
       }
@@ -103,6 +96,6 @@ class AuthorIconElement extends AuthorBaseElement(HTMLElement) {
   }
 }
 
-customElements.define('author-icon', AuthorIconElement)
+customElements.define('author-icon', AuthorMediaElement)
 
-export default AuthorIconElement
+export default AuthorMediaElement

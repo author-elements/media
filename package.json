@@ -1,8 +1,8 @@
 {
-  "name": "@author.io/element-icon",
+  "name": "@author.io/element-media",
   "version": "1.1.0",
-  "description": "author-icon custom element (web component).",
-  "main": "dist/author-icon.min.js",
+  "description": "author-media custom element (web component).",
+  "main": "dist/author-media.min.js",
   "scripts": {
     "build": "npm run clean && rollup -c ./rollup.release.config.js",
     "build-dev": "npm run build && npm run build-showroom",
@@ -25,7 +25,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/author-elements/icon.git"
+    "url": "git+https://github.com/author-elements/media.git"
   },
   "keywords": [
     "author",
@@ -33,7 +33,7 @@
     "component",
     "custom",
     "element",
-    "icon",
+    "media",
     "chassis",
     "ngn"
   ],
@@ -53,9 +53,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/author-elements/icon/issues"
+    "url": "https://github.com/author-elements/media/issues"
   },
-  "homepage": "https://github.com/author-elements/icon#readme",
+  "homepage": "https://github.com/author-elements/media#readme",
   "devDependencies": {
     "@author.io/karma-customelements": "^1.1.11",
     "@author.io/rollup-plugin-wcbuilder": "^1.1.4",
